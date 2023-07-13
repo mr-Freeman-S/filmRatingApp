@@ -6,15 +6,14 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import FilmCard from './screens/FilmCard';
-import FilmsList from './screens/HomeScreen';
+import FilmsList from './screens/FilmsList/FilmsList';
 
 export type RootStackParamList = {
   FilmsList: undefined;
-  FilmCard: {filmId: string};
+  FilmCard: {filmId: number};
 };
 
 export type Props = NativeStackScreenProps<RootStackParamList>;
-
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 function App(): JSX.Element {
