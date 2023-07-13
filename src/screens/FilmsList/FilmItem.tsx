@@ -6,7 +6,7 @@ import {
   ImageBackground,
   StyleSheet,
 } from 'react-native';
-import {FilmItemType} from '../../types/@filmsListType';
+import {FilmItemType} from '../../types/filmsListType';
 
 type FilmItemProps = {
   cardTouchHandler: (id: number) => void;

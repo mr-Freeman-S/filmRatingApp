@@ -7,10 +7,12 @@ import {
 } from '@react-navigation/native-stack';
 import FilmCard from './screens/FilmCard';
 import FilmsList from './screens/FilmsList/FilmsList';
+import ErrorPage from './screens/ErrorPage';
 
 export type RootStackParamList = {
   FilmsList: undefined;
   FilmCard: {filmId: number};
+  Error: undefined;
 };
 
 export type Props = NativeStackScreenProps<RootStackParamList>;
@@ -22,6 +24,7 @@ function App(): JSX.Element {
       <Stack.Navigator>
         <Stack.Screen name="FilmsList" component={FilmsList} />
         <Stack.Screen name="FilmCard" component={FilmCard} />
+        <Stack.Screen name="Error" component={ErrorPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

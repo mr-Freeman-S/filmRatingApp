@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, View, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator} from 'react-native';
 import {Props} from '../../App';
 import FilmItem from './FilmItem';
 import {filmServices} from '../../services/filmService';
-import {FilmItemType} from '../../types/@filmsListType';
+import {FilmItemType} from '../../types/filmsListType';
+import {FlashList} from '@shopify/flash-list';
 
-const FilmsList = ({navigation}: Props) => {
+type FilmsListProps = {
+  navigation: Props['navigation'];
+};
+const FilmsList: React.FC<FilmsListProps> = ({navigation}) => {
   const [pageCount, setPageCount] = useState<number>(1);
   const [filmsList, setFilmsList] = useState<FilmItemType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -19,7 +23,7 @@ const FilmsList = ({navigation}: Props) => {
       const response = await filmServices.fetchFilmsList(pageCount);
       setFilmsList(prevList => [...prevList, ...response.results]);
     } catch (error) {
-      console.log('errorFetchList', error);
+      return navigation.navigate('Error');
     }
 
     setIsLoading(false);
@@ -48,13 +52,14 @@ const FilmsList = ({navigation}: Props) => {
     setPageCount(pageCount + 1);
   };
   return (
-    <FlatList
+    <FlashList
       data={filmsList}
       renderItem={renderFilmItem}
-      keyExtractor={item => item.id.toString()}
+      keyExtractor={(itemm, index) => index.toString()}
       onEndReached={endReachedHandler}
-      onEndReachedThreshold={0.1}
+      onEndReachedThreshold={0.25}
       ListFooterComponent={renderFooter}
+      estimatedItemSize={200}
     />
   );
 };
