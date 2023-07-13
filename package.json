@@ -12,7 +12,7 @@
   "dependencies": {
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
-    "@shopify/flash-list": "^1.4.3",
+    "@shopify/flash-list": "^1.4.2",
     "@types/axios": "^0.14.0",
     "@types/lodash.debounce": "^4.0.7",
     "axios": "^1.4.0",
