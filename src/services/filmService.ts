@@ -1,11 +1,12 @@
 import {$api} from './axios';
 import {FilmsFetchResponseType} from '../types/filmsListType';
 import {FilmFetchResponseType} from '../types/filmDescriptionType';
+import {FilterType} from '../screens/FilmsList/FilmsList';
 
 export const filmServices = {
-  async fetchFilmsList(page: number) {
+  async fetchFilmsList(page: number, filteredBy: FilterType) {
     const {data} = await $api.get<FilmsFetchResponseType>(
-      `movie/popular?page=${page}`,
+      `movie/${filteredBy}?page=${page}`,
     );
     return data;
   },
